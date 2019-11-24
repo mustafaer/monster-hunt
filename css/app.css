@@ -1,0 +1,38 @@
+body {
+    font-family: "Comic Sans MS", serif;
+}
+
+.healthBar {
+    width: 100%;
+    height: 40px;
+    background-color: #eee;
+    margin: auto;
+    transition: width 500ms;
+}
+
+.playerHealth {
+    background-color: green;
+    margin: 0;
+    color: white;
+}
+
+.healthValue {
+    font-style: oblique;
+    font-size: medium;
+}
+
+.section {
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    box-shadow: 2px 2px lightgray;
+}
+
+.actions {
+    min-width: 110px;
+    color: white;
+    font-size: medium;
+}
+ul{
+    list-style: none;
+    padding: 0;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Monster Hunt</title>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+    <script crossorigin="anonymous"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div class="container mt-5 p-5 section" id="app">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col6">
+            <h1>PLAYER</h1>
+            <div class="healthBar">
+                <div :style="[playerHealth <=30 ? {'background-color':'red'} : playerHealth <=60 ? {'background-color':'orange'} : {'background-color':'green'},playerHealthProgress]"
+                     class="healthBar playerHealth text-center">
+                    <span class="align-middle healthValue">{{ playerHealth }}%</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col6">
+            <h1>MONSTER</h1>
+            <div class="healthBar">
+                <div :style="[monsterHealth <=30 ? {'background-color':'red'} : monsterHealth <=60 ? {'background-color':'orange'} : {'background-color':'green'},monsterHealthProgress]"
+                     class="healthBar playerHealth text-center">
+                    <span class="align-middle healthValue">{{ monsterHealth }}%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5 p-3 section" v-if="!gameIsOn || gameOverST">
+        <div class="col-lg-12 col-md-12 col-sm-12 col12 text-center">
+            <button @click="newGame" class="btn btn-primary" id="newGame">NEW GAME</button>
+        </div>
+    </div>
+    <div class="row mt-5 p-3 section" id="gameActions" v-if="gameIsOn && !gameOverST">
+        <div class="col-lg-12 col-md-12 col-sm-12 col12 text-center">
+            <button @click="attack" class="btn btn-danger actions" id="attack">Attack</button>
+            <button @click="attack" class="btn btn-warning actions" id="specialAttack"> Special Attack</button>
+            <button @click="firstAid" class="btn btn-info actions" id="firstAid">First Aid</button>
+            <button @click="giveUp" class="btn btn-secondary actions" id="giveUp">Give Up</button>
+        </div>
+    </div>
+    <div class="row mt-5 p-3 section" v-if="logs.length > 0">
+        <div class="col-lg-4 col-md-4 col-sm-4 col4">
+            <span>TOTAL PLAYER ATTACK POINT : {{totalPlayerAttackPoint}}</span>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col4">
+            <span>TOTAL HEAL POINT : {{totalHealPoint}}</span>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col4">
+            <span>TOTAL MONSTER ATTACK POINT : {{totalMonsterAttackPoint}}</span>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col12 text-center">
+            <hr>
+            <ul class="overflow-auto" style="max-height: 450px">
+                <li :class="{ 'alert alert-info' : log.turn == 'p', 'alert alert-danger' : log.turn == 'm' }" v-for="log in logs">
+                    {{ log.text }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
