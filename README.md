@@ -1,2 +1,2 @@
-# main-project-structure
-Main Project Structure For Some Repositories
+# Monster Hunt
+ Monster hunt with vueJS. Education Example.
