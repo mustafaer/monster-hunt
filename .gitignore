@@ -61,5 +61,6 @@ typings/
 .next
 
 # IDE
+.idea
 .idea/
 .idea/*
